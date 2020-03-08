@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from 'rxjs';
+import { Subscriber } from 'rxjs'
+
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
@@ -11,5 +14,9 @@ export class TopbarComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  date = new Observable<string>((observer: Subscriber<string>) => {
+    setInterval(() => observer.next(new Date().toString()), 1000);
+  });
 
 }
