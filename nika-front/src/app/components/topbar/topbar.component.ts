@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { Subscriber } from 'rxjs'
+import { Subscriber } from 'rxjs';
 
 @Component({
   selector: 'app-topbar',
