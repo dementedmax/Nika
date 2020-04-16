@@ -1,0 +1,36 @@
+#navbar{
+    position: fixed;
+    z-index: 9999;
+    flex-basis: auto;
+    top: 60px;
+    width: 105px;
+    height: calc(100% - 60px);
+    background-color: rgb(4, 60, 105);
+}
+
+#nav-buttons-group{
+    width: 105px;
+    height: 315px;
+    border: 0px;
+    border-radius: 0px;
+}
+
+.nav-button{
+    width: 101px;
+    height: 101px;
+    background-color: rgb(4, 60, 105);
+    color: snow;
+    border-top: solid 2px snow;
+    border-bottom: solid 2px snow !important;
+    border-right: solid 2px snow !important;
+    border-left: solid 2px snow !important;
+    border-radius: 0;
+}
+
+.nav-button-ico{
+    font-size: 70px;
+}
+
+.nav-button-lable{
+    line-height: 24px;
+}
