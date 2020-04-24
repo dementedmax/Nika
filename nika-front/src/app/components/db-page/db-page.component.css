@@ -1,0 +1,32 @@
+.db-control-panel{
+    position: fixed;
+}
+
+.db-filter{
+    height: 300px;
+    width: 205px;
+    margin-top: 80px;
+    margin-left: 125px;
+}
+
+.db-control-buttons{
+    width: 205px;
+    margin-left: 125px;
+}
+
+.db-control-buttons button{
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.db-table{
+    position: absolute;
+    top: 80px;
+    left: 350px;
+    width: 100%;
+}
+
+.data-table-content{
+    width: calc(100% - 370px);
+}
+/*calc(100% - 370px)*/
