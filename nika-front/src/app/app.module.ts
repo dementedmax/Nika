@@ -17,13 +17,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DbPageComponent } from './components/db-page/db-page.component';
+import { OrderPageComponent } from './components/order-page/order-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopbarComponent,
     NavbarComponent,
-    DbPageComponent
+    DbPageComponent,
+    OrderPageComponent
   ],
   imports: [
     BrowserModule,
