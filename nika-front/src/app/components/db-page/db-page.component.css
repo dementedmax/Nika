@@ -1,7 +1,5 @@
 .db-control-panel{
     position: fixed;
-    z-index: 9999;
-    flex-basis: auto;
 }
 
 .db-filter{
@@ -25,10 +23,10 @@
     position: absolute;
     top: 80px;
     left: 350px;
-    width: 625px;
+    width: 100%;
 }
 
 .data-table-content{
-    width: 625px;
+    width: calc(100% - 370px);
 }
 /*calc(100% - 370px)*/
