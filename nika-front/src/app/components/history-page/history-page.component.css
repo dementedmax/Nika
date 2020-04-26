@@ -1,0 +1,32 @@
+.history-control-panel{
+    position: fixed;
+}
+
+.history-filter{
+    height: 350px;
+    width: 205px;
+    margin-top: 80px;
+    margin-left: 125px;
+}
+
+.history-control-buttons{
+    width: 205px;
+    margin-left: 125px;
+}
+
+.history-control-buttons button{
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.history-table{
+    position: absolute;
+    top: 80px;
+    left: 350px;
+    width: 100%;
+}
+
+.history-table-content{
+    width: calc(100% - 370px);
+}
+/*calc(100% - 370px)*/
