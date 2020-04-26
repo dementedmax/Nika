@@ -13,11 +13,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DbPageComponent } from './components/db-page/db-page.component';
 import { OrderPageComponent } from './components/order-page/order-page.component';
+import { HistoryPageComponent } from './components/history-page/history-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { OrderPageComponent } from './components/order-page/order-page.component
     TopbarComponent,
     NavbarComponent,
     DbPageComponent,
-    OrderPageComponent
+    OrderPageComponent,
+    HistoryPageComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,10 @@ import { OrderPageComponent } from './components/order-page/order-page.component
     MatSelectModule,
     MatButtonModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule, 
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
