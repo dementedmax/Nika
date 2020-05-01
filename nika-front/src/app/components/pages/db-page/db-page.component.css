@@ -37,4 +37,12 @@
     padding: 0px 5px 0px 5px;
 }
 
+.mat-accent {
+    background: blue !important;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+  }
+
 /*calc(100% - 370px)*/

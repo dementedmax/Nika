@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { SelectionModel } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 
 export interface AutoPart {
@@ -56,7 +58,7 @@ const AUTOPART_DATA: AutoPart[] = [
     manufacturer: 'WXQP',
     mark: 'VAG',
     vcode: '312405',
-    orinumber: 'KS=93 876 600',
+    orinumber: 'KS-93 876 600',
     minbalance: 1,
     balance: 1,
     purprice: 6700,
@@ -145,10 +147,33 @@ export class DbPageComponent implements OnInit {
 
   constructor() { }
 
-  displayedColumns: string[] = ['number','nomenclature','manufacturer','mark','vcode','orinumber','minbalance','balance','purprice','price','summ'];
+  displayedColumns: string[] = ['select','number','nomenclature','manufacturer','mark','vcode','orinumber','minbalance','balance','purprice','price','summ'];
   dataSource = new MatTableDataSource<AutoPart>(AUTOPART_DATA);
+  selection = new SelectionModel<AutoPart>(true, []);
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  masterToggle() {
+    this.isAllSelected() ?
+        this.selection.clear() :
+        this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  checkboxLabel(row?: AutoPart): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.number + 1}`;
+  }
+
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit() {
+    this.dataSource.sort = this.sort;
   }
 
 }

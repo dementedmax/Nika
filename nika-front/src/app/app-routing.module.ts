@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DbPageComponent } from './components/db-page/db-page.component';
-import { OrderPageComponent } from './components/order-page/order-page.component';
-import { HistoryPageComponent } from './components/history-page/history-page.component';
+import { DbPageComponent } from './components/pages/db-page/db-page.component';
+import { OrderPageComponent } from './components/pages/order-page/order-page.component';
+import { HistoryPageComponent } from './components/pages/history-page/history-page.component';
 
 
 const routes: Routes = [
