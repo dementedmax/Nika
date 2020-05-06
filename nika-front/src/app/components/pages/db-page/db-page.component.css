@@ -21,28 +21,30 @@
 
 .db-table{
     position: absolute;
-    top: 80px;
+    top: 60px;
     left: 350px;
     width: calc(100% - 370px);
 }
 
-.data-table-content{
-    width: 100%;
+.mat-cell{
+    font-size: 14px;
 }
-.data-table-content td.mat-cell{
+
+.db-table td.mat-cell{
     padding: 5px 5px 5px 5px;
 }
 
-.data-table-content th.mat-header-cell{
+.db-table th.mat-header-cell{
     padding: 0px 5px 0px 5px;
-}
-
-.mat-accent {
-    background: blue !important;
 }
 
 th.mat-sort-header-sorted {
     color: black;
-  }
+}
 
-/*calc(100% - 370px)*/
+.mat-header-row {
+    position: sticky;
+    top: 60px;
+    background: white;
+    z-index: 9999;
+}
