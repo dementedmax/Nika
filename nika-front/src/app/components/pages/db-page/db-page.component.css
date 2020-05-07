@@ -1,0 +1,50 @@
+.db-control-panel{
+    position: fixed;
+}
+
+.db-filter{
+    height: 300px;
+    width: 205px;
+    margin-top: 80px;
+    margin-left: 125px;
+}
+
+.db-control-buttons{
+    width: 205px;
+    margin-left: 125px;
+}
+
+.db-control-buttons button{
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.db-table{
+    position: absolute;
+    top: 60px;
+    left: 350px;
+    width: calc(100% - 370px);
+}
+
+.mat-cell{
+    font-size: 14px;
+}
+
+.db-table td.mat-cell{
+    padding: 5px 5px 5px 5px;
+}
+
+.db-table th.mat-header-cell{
+    padding: 0px 5px 0px 5px;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.mat-header-row {
+    position: sticky;
+    top: 60px;
+    background: white;
+    z-index: 9999;
+}
