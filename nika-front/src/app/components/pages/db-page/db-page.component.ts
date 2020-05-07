@@ -60,6 +60,7 @@ const AUTOPART_DATA: AutoPart[] = [
   }
 ];
 
+
 @Component({
   selector: 'app-db-page',
   templateUrl: './db-page.component.html',
@@ -69,23 +70,29 @@ export class DbPageComponent implements OnInit {
 
   constructor() { }
 
+  //Инициализация массива выводимых столбцов, который используется в mat-table
   displayedColumns: string[] = ['select', 'number', 'nomenclature', 'manufacturer', 'mark', 'vcode', 'orinumber', 'balance', 'price', 'summ'];
+  //Инициализация объекта DataSource, который необходим для правильного функционирования mat-table.
   dataSource = new MatTableDataSource<AutoPart>(AUTOPART_DATA);
+  //Объект который хранит выделенные компоненты
   selection = new SelectionModel<AutoPart>(true, []);
-  autoparts = AUTOPART_DATA;
 
+
+  //Функция для выбора выбора всех элементов. Если они выделены - убирает выделение.
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+  
+  //Функция для выбора всех элементов в таблице
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
+  //Функция для чекбоксов. Добавляет или удаляет элемент в массив выбранных элементов.
   checkboxLabel(row?: AutoPart): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
@@ -93,16 +100,32 @@ export class DbPageComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.number + 1}`;
   }
 
+  //Обвязка для сортировки по заголовкам столбцов
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
+  //Функция фильтрации
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+
   ngOnInit() {
     this.dataSource.sort = this.sort;
-
   }
 
+  //Инициализация массивов для mat-select
+  marks = this.createArraySelect(AUTOPART_DATA , "mark");
+  manufacturers = this.createArraySelect(AUTOPART_DATA, "manufacturer");
+
+  //Функция для создания массива для фильтра по типу.
+  createArraySelect(array:AutoPart[],type:string){
+    var setarray = [];
+    for(var i = 0; i < array.length; i++){
+      setarray[i] = array[i][type];
+    }    
+    var typearray = Array.from(new Set(setarray));
+    return typearray;
+  }
+  
 }
