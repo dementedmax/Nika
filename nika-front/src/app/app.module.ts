@@ -20,7 +20,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { DbPageComponent } from './components/pages/db-page/db-page.component';
+import { DbPageComponent, sellDialog } from './components/pages/db-page/db-page.component';
 import { OrderPageComponent } from './components/pages/order-page/order-page.component';
 import { HistoryPageComponent } from './components/pages/history-page/history-page.component';
 
@@ -30,8 +30,13 @@ import { HistoryPageComponent } from './components/pages/history-page/history-pa
     TopbarComponent,
     NavbarComponent,
     DbPageComponent,
+    sellDialog,
     OrderPageComponent,
     HistoryPageComponent
+  ],
+  entryComponents: [
+    DbPageComponent, 
+    sellDialog
   ],
   imports: [
     BrowserModule,
