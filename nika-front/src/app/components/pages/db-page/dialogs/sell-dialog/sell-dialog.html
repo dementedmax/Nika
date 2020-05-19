@@ -1,0 +1,41 @@
+<table mat-table [dataSource]="data" matSort class="mat-elevation-z8 dialog-table">
+
+    <!-- Столбец номеров -->
+    <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+        <td mat-cell *matCellDef="let autopart"> {{autopart.number}} </td>
+    </ng-container>
+
+    <!-- Столбец номенклатуры -->
+    <ng-container matColumnDef="nomenclature">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Номенклатура </th>
+        <td mat-cell *matCellDef="let autopart"> {{autopart.nomenclature}} </td>
+    </ng-container>
+
+    <!-- Столбец производителя -->
+    <ng-container matColumnDef="manufacturer">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Производитель </th>
+        <td mat-cell *matCellDef="let autopart"> {{autopart.manufacturer}} </td>
+    </ng-container>
+
+    <!-- Столбец марок -->
+    <ng-container matColumnDef="mark">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Марка </th>
+        <td mat-cell *matCellDef="let autopart"> {{autopart.mark}} </td>
+    </ng-container>
+
+    <!-- Столбец остатка -->
+    <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Остаток </th>
+        <td mat-cell *matCellDef="let autopart"> {{autopart.balance}} </td>
+    </ng-container>
+
+    <!-- Столбец цены -->
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Цена </th>
+        <td mat-cell *matCellDef="let autopart"> {{autopart.price}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
