@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog'
+import { SellDialogComponent } from './dialogs/sell-dialog/sell-dialog.component'
 
 export interface AutoPart {
   number: string;
@@ -58,6 +59,48 @@ const AUTOPART_DATA: AutoPart[] = [
   {
     number: 'A-059579', nomenclature: 'Датчик положения распредвала AUDI A4, A6, VW PASSAT5 1.8-2.8', manufacturer: 'JP GROUP',
     mark: 'VAG', vcode: '1191400500', orinumber: '058 905 161B', minbalance: 1, balance: 1, purprice: 4500, price: 5700,
+  },
+  {
+    number: '30260', nomenclature: 'Лампа T20, W21W 12V, 21W цоколь W3x16d', manufacturer: 'LYNXAUTO', mark: 'UNIVERSAL',
+    vcode: 'L15521', orinumber: '', minbalance: 3, balance: 4, purprice: 300, price: 400,
+  },
+  {
+    number: 'A-023015', nomenclature: 'Вилка сцепления VW PASSAT3 88--', manufacturer: 'WXQP', mark: 'VAG', vcode: '360869',
+    orinumber: '02A 141 709A', minbalance: 3, balance: 2, purprice: 2000, price: 2700,
+  },
+  {
+    number: 'A-005329', nomenclature: 'Поршневая группа к-т A, VW 1.8 AAM STD [81,00x1,50x1,75x3,00]', manufacturer: 'WXQP', mark: 'VAG',
+    vcode: '312405', orinumber: 'KS-93 876 600', minbalance: 1, balance: 1, purprice: 6700, price: 9000,
+  },
+  {
+    number: 'A-365560', nomenclature: 'Катушка зажигания HYUNDAI, KIA G4KC, G4KE, G4KJ, G4KD, G4NA 2.0-2.4 SANTA FE CM, DM, SONATA NF, SORENTO XM 09--',
+    manufacturer: 'ERA', mark: 'HYUNDAI/KIA', vcode: '880320', orinumber: '27300-3F100', minbalance: 1, balance: 1, purprice: 8000,
+    price: 10500,
+  },
+  {
+    number: '12892', nomenclature: 'Отражатель в передний бампер VW GOLF3 (с туманками) L', manufacturer: 'DEPO', mark: 'VAG',
+    vcode: '441-1610L', orinumber: '1H0 941 779', minbalance: 5, balance: 1, purprice: 700, price: 1000,
+  },
+  {
+    number: '30260', nomenclature: 'Лампа T20, W21W 12V, 21W цоколь W3x16d', manufacturer: 'LYNXAUTO', mark: 'UNIVERSAL',
+    vcode: 'L15521', orinumber: '', minbalance: 3, balance: 4, purprice: 300, price: 400,
+  },
+  {
+    number: 'A-023015', nomenclature: 'Вилка сцепления VW PASSAT3 88--', manufacturer: 'WXQP', mark: 'VAG', vcode: '360869',
+    orinumber: '02A 141 709A', minbalance: 3, balance: 2, purprice: 2000, price: 2700,
+  },
+  {
+    number: 'A-005329', nomenclature: 'Поршневая группа к-т A, VW 1.8 AAM STD [81,00x1,50x1,75x3,00]', manufacturer: 'WXQP', mark: 'VAG',
+    vcode: '312405', orinumber: 'KS-93 876 600', minbalance: 1, balance: 1, purprice: 6700, price: 9000,
+  },
+  {
+    number: 'A-365560', nomenclature: 'Катушка зажигания HYUNDAI, KIA G4KC, G4KE, G4KJ, G4KD, G4NA 2.0-2.4 SANTA FE CM, DM, SONATA NF, SORENTO XM 09--',
+    manufacturer: 'ERA', mark: 'HYUNDAI/KIA', vcode: '880320', orinumber: '27300-3F100', minbalance: 1, balance: 1, purprice: 8000,
+    price: 10500,
+  },
+  {
+    number: '12892', nomenclature: 'Отражатель в передний бампер VW GOLF3 (с туманками) L', manufacturer: 'DEPO', mark: 'VAG',
+    vcode: '441-1610L', orinumber: '1H0 941 779', minbalance: 5, balance: 1, purprice: 700, price: 1000,
   }
 ];
 
@@ -113,7 +156,7 @@ export class DbPageComponent implements OnInit {
   openDialogSell(): void {
     if (this.selection.selected.length != 0) {
 
-      const dialogRef = this.dialog.open(sellDialog, {
+      const dialogRef = this.dialog.open(SellDialogComponent, {
         width: '800px',
         data: this.selection.selected
       }
@@ -151,25 +194,4 @@ export class DbPageComponent implements OnInit {
     return typearray;
   }
   */
-}
-@Component({
-  selector: 'sell-dialog',
-  templateUrl: 'dialogs/sell-dialog/sell-dialog.html',
-  styleUrls: ['./dialogs/sell-dialog/sell-dialog.css']
-})
-export class sellDialog {
-
-  displayedColumns: string[] = ['number', 'nomenclature', 'manufacturer', 'mark', 'balance', 'price'];
-  //Инициализация объекта DataSource, который необходим для правильного функционирования mat-table.
-  dataSource = new MatTableDataSource<AutoPart>(AUTOPART_DATA);
-
-  constructor(
-    public dialogRef: MatDialogRef<sellDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: AutoPart) {
-    }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
 }
