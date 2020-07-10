@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog'
+import { SellDialogComponent } from './dialogs/sell-dialog/sell-dialog.component'
 
 export interface AutoPart {
   number: string;
@@ -22,7 +24,7 @@ const AUTOPART_DATA: AutoPart[] = [
     orinumber: '.', minbalance: 5, balance: 0, purprice: 20, price: 30,
   },
   {
-    number: '30260', nomenclature: 'Лампа T20, W21W 12V, 21W цоколь W3x16d', manufacturer: 'LYNXAUTO', mark: 'UNIVERSAL', 
+    number: '30260', nomenclature: 'Лампа T20, W21W 12V, 21W цоколь W3x16d', manufacturer: 'LYNXAUTO', mark: 'UNIVERSAL',
     vcode: 'L15521', orinumber: '', minbalance: 3, balance: 4, purprice: 300, price: 400,
   },
   {
@@ -30,7 +32,7 @@ const AUTOPART_DATA: AutoPart[] = [
     orinumber: '02A 141 709A', minbalance: 3, balance: 2, purprice: 2000, price: 2700,
   },
   {
-    number: 'A-005329', nomenclature: 'Поршневая группа к-т A, VW 1.8 AAM STD [81,00x1,50x1,75x3,00]', manufacturer: 'WXQP', mark: 'VAG', 
+    number: 'A-005329', nomenclature: 'Поршневая группа к-т A, VW 1.8 AAM STD [81,00x1,50x1,75x3,00]', manufacturer: 'WXQP', mark: 'VAG',
     vcode: '312405', orinumber: 'KS-93 876 600', minbalance: 1, balance: 1, purprice: 6700, price: 9000,
   },
   {
@@ -51,12 +53,54 @@ const AUTOPART_DATA: AutoPart[] = [
     mark: 'VAG', vcode: '078 103 610A', orinumber: '078 103 610A', minbalance: 1, balance: 1, purprice: 500, price: 1000,
   },
   {
-    number: 'A-031982', nomenclature: 'Лягушка стоп-сигнала AUDI A4, A6, VW PASSAT5 01--, Q7, TOUAREG', manufacturer: 'FACET', 
+    number: 'A-031982', nomenclature: 'Лягушка стоп-сигнала AUDI A4, A6, VW PASSAT5 01--, Q7, TOUAREG', manufacturer: 'FACET',
     mark: 'VAG', vcode: '7.1229', orinumber: '1K2 945 511 RDW; 7L6 945 511', minbalance: 1, balance: 1, purprice: 1500, price: 2500,
   },
   {
     number: 'A-059579', nomenclature: 'Датчик положения распредвала AUDI A4, A6, VW PASSAT5 1.8-2.8', manufacturer: 'JP GROUP',
     mark: 'VAG', vcode: '1191400500', orinumber: '058 905 161B', minbalance: 1, balance: 1, purprice: 4500, price: 5700,
+  },
+  {
+    number: '30260', nomenclature: 'Лампа T20, W21W 12V, 21W цоколь W3x16d', manufacturer: 'LYNXAUTO', mark: 'UNIVERSAL',
+    vcode: 'L15521', orinumber: '', minbalance: 3, balance: 4, purprice: 300, price: 400,
+  },
+  {
+    number: 'A-023015', nomenclature: 'Вилка сцепления VW PASSAT3 88--', manufacturer: 'WXQP', mark: 'VAG', vcode: '360869',
+    orinumber: '02A 141 709A', minbalance: 3, balance: 2, purprice: 2000, price: 2700,
+  },
+  {
+    number: 'A-005329', nomenclature: 'Поршневая группа к-т A, VW 1.8 AAM STD [81,00x1,50x1,75x3,00]', manufacturer: 'WXQP', mark: 'VAG',
+    vcode: '312405', orinumber: 'KS-93 876 600', minbalance: 1, balance: 1, purprice: 6700, price: 9000,
+  },
+  {
+    number: 'A-365560', nomenclature: 'Катушка зажигания HYUNDAI, KIA G4KC, G4KE, G4KJ, G4KD, G4NA 2.0-2.4 SANTA FE CM, DM, SONATA NF, SORENTO XM 09--',
+    manufacturer: 'ERA', mark: 'HYUNDAI/KIA', vcode: '880320', orinumber: '27300-3F100', minbalance: 1, balance: 1, purprice: 8000,
+    price: 10500,
+  },
+  {
+    number: '12892', nomenclature: 'Отражатель в передний бампер VW GOLF3 (с туманками) L', manufacturer: 'DEPO', mark: 'VAG',
+    vcode: '441-1610L', orinumber: '1H0 941 779', minbalance: 5, balance: 1, purprice: 700, price: 1000,
+  },
+  {
+    number: '30260', nomenclature: 'Лампа T20, W21W 12V, 21W цоколь W3x16d', manufacturer: 'LYNXAUTO', mark: 'UNIVERSAL',
+    vcode: 'L15521', orinumber: '', minbalance: 3, balance: 4, purprice: 300, price: 400,
+  },
+  {
+    number: 'A-023015', nomenclature: 'Вилка сцепления VW PASSAT3 88--', manufacturer: 'WXQP', mark: 'VAG', vcode: '360869',
+    orinumber: '02A 141 709A', minbalance: 3, balance: 2, purprice: 2000, price: 2700,
+  },
+  {
+    number: 'A-005329', nomenclature: 'Поршневая группа к-т A, VW 1.8 AAM STD [81,00x1,50x1,75x3,00]', manufacturer: 'WXQP', mark: 'VAG',
+    vcode: '312405', orinumber: 'KS-93 876 600', minbalance: 1, balance: 1, purprice: 6700, price: 9000,
+  },
+  {
+    number: 'A-365560', nomenclature: 'Катушка зажигания HYUNDAI, KIA G4KC, G4KE, G4KJ, G4KD, G4NA 2.0-2.4 SANTA FE CM, DM, SONATA NF, SORENTO XM 09--',
+    manufacturer: 'ERA', mark: 'HYUNDAI/KIA', vcode: '880320', orinumber: '27300-3F100', minbalance: 1, balance: 1, purprice: 8000,
+    price: 10500,
+  },
+  {
+    number: '12892', nomenclature: 'Отражатель в передний бампер VW GOLF3 (с туманками) L', manufacturer: 'DEPO', mark: 'VAG',
+    vcode: '441-1610L', orinumber: '1H0 941 779', minbalance: 5, balance: 1, purprice: 700, price: 1000,
   }
 ];
 
@@ -68,7 +112,7 @@ const AUTOPART_DATA: AutoPart[] = [
 })
 export class DbPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   //Инициализация массива выводимых столбцов, который используется в mat-table
   displayedColumns: string[] = ['select', 'number', 'nomenclature', 'manufacturer', 'mark', 'vcode', 'orinumber', 'balance', 'price', 'summ'];
@@ -78,13 +122,13 @@ export class DbPageComponent implements OnInit {
   selection = new SelectionModel<AutoPart>(true, []);
 
 
-  //Функция для выбора выбора всех элементов. Если они выделены - убирает выделение.
+  //Функция для выбора всех элементов. Если они выделены - убирает выделение.
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
-  
+
   //Функция для выбора всех элементов в таблице
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -104,20 +148,42 @@ export class DbPageComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   //Функция фильтрации
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  // Диалог продажи
+  openDialogSell(): void {
+    if (this.selection.selected.length != 0) {
+
+      const dialogRef = this.dialog.open(SellDialogComponent, {
+        width: '800px',
+        data: this.selection.selected
+      }
+      );
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        //this.dataSource = result;
+      });
+    }
+  }
 
   ngOnInit() {
     this.dataSource.sort = this.sort;
   }
 
+
+  
+  selectFilter(event){
+    if(event.value != undefined){
+      this.dataSource.filter = event.value.trim().toLowerCase();
+    }
+  }
   //Инициализация массивов для mat-select
   marks = this.createArraySelect(AUTOPART_DATA , "mark");
   manufacturers = this.createArraySelect(AUTOPART_DATA, "manufacturer");
-
+ 
   //Функция для создания массива для фильтра по типу.
   createArraySelect(array:AutoPart[],type:string){
     var setarray = [];
@@ -127,5 +193,4 @@ export class DbPageComponent implements OnInit {
     var typearray = Array.from(new Set(setarray));
     return typearray;
   }
-  
 }

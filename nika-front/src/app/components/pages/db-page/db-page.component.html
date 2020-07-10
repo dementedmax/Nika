@@ -6,27 +6,34 @@
         <!-- Фильтр по всем элементам -->
         <mat-form-field appearance="fill">
             <mat-label>Поиск</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="По номенклатуре">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="По номенклатуре">
         </mat-form-field>
-        <!-- Фильтр элементов по маркам -->
+
+        
+        
         <mat-form-field appearance="fill">
             <mat-label>Марка</mat-label>
-            <mat-select>
+            <mat-select (selectionChange)="selectFilter($event)" [disabled]="true">
+                <mat-option>None</mat-option>
                 <mat-option *ngFor="let mark of marks" [value]="mark"> {{mark}} </mat-option>
             </mat-select>
         </mat-form-field>
-        <!-- Фильтр элементов по производителю -->
+        
+        
         <mat-form-field appearance="fill">
             <mat-label>Производитель</mat-label>
-            <mat-select>
+            <mat-select [disabled]="true">
+                <mat-option>None</mat-option>
                 <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer">{{manufacturer}}</mat-option>
             </mat-select>
         </mat-form-field>
+        
+
     </div>
 
     <!-- Кнопки управления -->
     <div class="db-control-buttons">
-        <button mat-stroked-button>Продать</button>
+        <button mat-stroked-button (click)="openDialogSell()">Продать</button>
         <button mat-flat-button color="warn">Возврат</button>
         <button mat-flat-button color="primary">Приём</button>
         <button mat-flat-button color="accent">Заказ</button>
@@ -96,7 +103,7 @@
     <!-- Столбец остатка -->
     <ng-container matColumnDef="balance">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Остаток </th>
-        <td mat-cell *matCellDef="let autopart"> {{autopart.balance}} </td>
+        <td mat-cell *matCellDef="let autopart" [ngStyle]="{'background-color': autopart.balance <= autopart.minbalance? 'orange' : 'snow'}"> {{autopart.balance}} </td>
     </ng-container>
 
     <!-- Столбец закцпочной цены -->

@@ -23,6 +23,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DbPageComponent } from './components/pages/db-page/db-page.component';
 import { OrderPageComponent } from './components/pages/order-page/order-page.component';
 import { HistoryPageComponent } from './components/pages/history-page/history-page.component';
+import { SellDialogComponent } from './components/pages/db-page/dialogs/sell-dialog/sell-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,11 @@ import { HistoryPageComponent } from './components/pages/history-page/history-pa
     NavbarComponent,
     DbPageComponent,
     OrderPageComponent,
-    HistoryPageComponent
+    HistoryPageComponent,
+    SellDialogComponent
+  ],
+  entryComponents: [
+    SellDialogComponent,
   ],
   imports: [
     BrowserModule,
