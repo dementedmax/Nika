@@ -24,6 +24,7 @@ import { DbPageComponent } from './components/pages/db-page/db-page.component';
 import { OrderPageComponent } from './components/pages/order-page/order-page.component';
 import { HistoryPageComponent } from './components/pages/history-page/history-page.component';
 import { SellDialogComponent } from './components/pages/db-page/dialogs/sell-dialog/sell-dialog.component';
+import { ChangeDialogComponent } from './components/pages/db-page/dialogs/change-dialog/change-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SellDialogComponent } from './components/pages/db-page/dialogs/sell-dia
     DbPageComponent,
     OrderPageComponent,
     HistoryPageComponent,
-    SellDialogComponent
+    SellDialogComponent,
+    ChangeDialogComponent
   ],
   entryComponents: [
     SellDialogComponent,
