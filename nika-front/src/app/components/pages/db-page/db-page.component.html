@@ -9,25 +9,25 @@
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="По номенклатуре">
         </mat-form-field>
 
-        <!-- В разработке -->
-        <!-- Фильтр элементов по маркам 
+        
+        
         <mat-form-field appearance="fill">
             <mat-label>Марка</mat-label>
-            <mat-select (selectionChange)="selectFilter($event)">
+            <mat-select (selectionChange)="selectFilter($event)" [disabled]="true">
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let mark of marks" [value]="mark"> {{mark}} </mat-option>
             </mat-select>
         </mat-form-field>
-        -->
-        <!-- Фильтр элементов по производителю 
+        
+        
         <mat-form-field appearance="fill">
             <mat-label>Производитель</mat-label>
-            <mat-select>
+            <mat-select [disabled]="true">
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer">{{manufacturer}}</mat-option>
             </mat-select>
         </mat-form-field>
-        -->
+        
 
     </div>
 

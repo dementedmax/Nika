@@ -174,7 +174,7 @@ export class DbPageComponent implements OnInit {
   }
 
 
-  /* В разработке
+  
   selectFilter(event){
     if(event.value != undefined){
       this.dataSource.filter = event.value.trim().toLowerCase();
@@ -193,5 +193,4 @@ export class DbPageComponent implements OnInit {
     var typearray = Array.from(new Set(setarray));
     return typearray;
   }
-  */
 }
