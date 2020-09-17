@@ -39,6 +39,7 @@ import { ChangeDialogComponent } from './components/pages/db-page/dialogs/change
   ],
   entryComponents: [
     SellDialogComponent,
+    ChangeDialogComponent
   ],
   imports: [
     BrowserModule,

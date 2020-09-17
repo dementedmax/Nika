@@ -4,6 +4,7 @@ import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog'
 import { SellDialogComponent } from './dialogs/sell-dialog/sell-dialog.component'
+import { ChangeDialogComponent } from './dialogs/change-dialog/change-dialog.component'
 
 export interface AutoPart {
   number: string;
@@ -157,6 +158,23 @@ export class DbPageComponent implements OnInit {
     if (this.selection.selected.length != 0) {
 
       const dialogRef = this.dialog.open(SellDialogComponent, {
+        width: '800px',
+        data: this.selection.selected
+      }
+      );
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+        //this.dataSource = result;
+      });
+    }
+  }
+
+  // Диалог изменения
+  openDialogChange(): void {
+    if (this.selection.selected.length != 0) {
+
+      const dialogRef = this.dialog.open(ChangeDialogComponent, {
         width: '800px',
         data: this.selection.selected
       }

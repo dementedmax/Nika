@@ -1,0 +1,23 @@
+.dialog-table{
+    width: 100%;
+}
+
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell{
+    padding: 15px;
+}
+
+.change-dialog-input-width{
+    width: 40%;
+}
+
+.change-dialog-price{
+    width: 20%;
+}
+
+.change-dialog-control-buttons{
+    padding: 15px;
+}
+
+change-dialog-control-buttons .mat-flat-button{
+    margin: 15px;
+}
